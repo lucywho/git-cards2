@@ -1,22 +1,17 @@
-import SearchUsers from "./components/SearchUsers"
-import Cards from "./components/Cards"
 import "./index.css"
 import React from "react"
+import Cards from "./components/Cards"
+import SearchUsers from "./components/SearchUsers"
 
 class App extends React.Component {
     state = {
-        profiles: [
-            {
-                name: "lucy",
-                company: "lucyville webdesign",
-                avatar_url: "https://picsum.photos/100",
-            },
-            {
-                name: "Lucy de Lucy",
-                company: "lucyville farm shop",
-                avatar_url: "https://picsum.photos/150",
-            },
-        ],
+        profiles: [],
+    }
+
+    addNewProfile = (profile) => {
+        this.setState({
+            profiles: this.state.profiles.concat(profile),
+        })
     }
 
     render() {
@@ -24,7 +19,8 @@ class App extends React.Component {
             <>
                 <div className="App">
                     <header>Git Cards App</header>
-                    <SearchUsers />
+                    <SearchUsers addNewProfile={this.addNewProfile} />
+
                     <Cards profiles={this.state.profiles} />
                 </div>
             </>
